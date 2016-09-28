@@ -26,6 +26,10 @@ public class Ask_Key extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(),"Empty Field",Toast.LENGTH_LONG).show();
                 }
+                else if(!db.Exist(id.getText().toString()))
+                {
+                    Toast.makeText(getApplicationContext(),"This ID is Invalid",Toast.LENGTH_LONG).show();
+                }
                 else
                 {
                     int input=getIntent().getIntExtra("Value",0);
@@ -43,4 +47,7 @@ public class Ask_Key extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

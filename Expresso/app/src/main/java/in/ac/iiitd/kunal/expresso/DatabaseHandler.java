@@ -61,12 +61,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public Information getInfo(int id) {
+    public Information getInfo(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_INFO, new String[] { KEY_ID,
                         KEY_NAME, KEY_PH_NO, KEY_COLLEGE_ID,KEY_COLLEGE_NAME,KEY_DOB }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+                new String[] { id }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -111,4 +111,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.delete(TABLE_INFO, KEY_ID + " = ?", new String[]{Id});
         db.close();
     }
+
+    public boolean Exist(String id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_INFO, new String[] { KEY_ID,
+                        KEY_NAME, KEY_PH_NO, KEY_COLLEGE_ID,KEY_COLLEGE_NAME,KEY_DOB }, KEY_ID + "=?",
+                new String[] { id }, null, null, null, null);
+        if (cursor!=null && cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+
 }
