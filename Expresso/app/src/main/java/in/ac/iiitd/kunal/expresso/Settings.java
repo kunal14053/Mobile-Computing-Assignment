@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class Settings extends AppCompatActivity {
 
-    Button Show,Update,Delete;
+    Button Show,Update,Delete,Add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class Settings extends AppCompatActivity {
         Show=(Button)findViewById(R.id.show);
         Update=(Button)findViewById(R.id.update);
         Delete=(Button)findViewById(R.id.delete);
+        Add=(Button)findViewById(R.id.add);
 
         Show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,14 @@ public class Settings extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(Settings.this,Ask_Key.class);
                 i.putExtra("Value",2);
+                startActivity(i);
+            }
+        });
+
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Settings.this,Details.class);
                 startActivity(i);
             }
         });

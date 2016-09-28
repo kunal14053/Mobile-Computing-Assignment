@@ -32,6 +32,7 @@ public class Ask_Key extends AppCompatActivity {
                     if(input==1)
                     {
                         Intent i=new Intent(Ask_Key.this,Update.class);
+                        i.putExtra("ID",id.getText().toString());
                         startActivity(i);
                     }
                     else

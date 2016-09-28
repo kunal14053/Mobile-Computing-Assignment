@@ -30,7 +30,7 @@ public class Update extends AppCompatActivity {
         Proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.updateInfo(new Information(Name.getText().toString(),College_name.getText().toString(),College_id.getText().toString(),Dob.getText().toString(),Po_no.getText().toString()));
+                db.updateInfo(getIntent().getStringExtra("ID"),new Information(Name.getText().toString(),College_name.getText().toString(),College_id.getText().toString(),Dob.getText().toString(),Po_no.getText().toString()));
             }
         });
 

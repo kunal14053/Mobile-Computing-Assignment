@@ -94,7 +94,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return infoList;
     }
 
-    public int updateInfo(Information info) {
+    public int updateInfo(String id,Information info) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, info.getName());
@@ -103,7 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DOB, info.getDob());
         values.put(KEY_PH_NO, info.getPhone_number());
         return db.update(TABLE_INFO, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(info.getId()) });
+                new String[] { id });
     }
 
     public void deleteInfo(String Id) {
