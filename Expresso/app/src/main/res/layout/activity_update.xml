@@ -10,8 +10,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/espresso"
-    tools:context="in.ac.iiitd.kunal.expresso.Details">
-
+    tools:context="in.ac.iiitd.kunal.expresso.Update">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +33,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/name"
+            android:id="@+id/name1"
             />
 
     </LinearLayout>
@@ -60,7 +59,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/college_name"
+            android:id="@+id/college_name1"
             />
 
     </LinearLayout>
@@ -86,7 +85,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/college_id"
+            android:id="@+id/college_id1"
             />
 
     </LinearLayout>
@@ -112,7 +111,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/dob"
+            android:id="@+id/dob1"
             />
 
     </LinearLayout>
@@ -138,7 +137,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/po_no"
+            android:id="@+id/po_no1"
             />
 
     </LinearLayout>
@@ -150,8 +149,10 @@
         android:layout_marginTop="30dp"
         android:textColor="#000000"
         android:textStyle="bold"
-        android:id="@+id/proceed"
-        android:text="Thanks &amp; Procees"
+        android:id="@+id/proceed1"
+        android:text="Update"
         />
 
 </LinearLayout>
+
+

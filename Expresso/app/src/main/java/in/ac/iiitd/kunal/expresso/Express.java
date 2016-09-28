@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class Express extends AppCompatActivity {
 
-    private Button General,Personal,Memorable;
+    private Button General,Personal,Memorable,Settings;
     public static String TAG="Id";
 
     @Override
@@ -43,6 +43,16 @@ public class Express extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        Settings=(Button)findViewById(R.id.Settings);
+        Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Express.this,Settings.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

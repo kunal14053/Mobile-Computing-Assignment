@@ -37,12 +37,15 @@ public class Save extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"SORRY",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
+                        //General
                         Toast.makeText(getApplicationContext(),"Saved",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
+                        //Memorable
                         Toast.makeText(getApplicationContext(),"Saved",Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
+                        //Personal
                         Toast.makeText(getApplicationContext(),"Saved",Toast.LENGTH_SHORT).show();
                         break;
                     default:
