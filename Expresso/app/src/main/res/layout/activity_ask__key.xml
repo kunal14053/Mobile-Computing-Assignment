@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="Your ID:"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:gravity="left"

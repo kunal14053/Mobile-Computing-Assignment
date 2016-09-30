@@ -12,6 +12,18 @@
     android:gravity="center"
     tools:context="in.ac.iiitd.kunal.expresso.MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Enter and Login or SignUp"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="25dp"
+        android:textStyle="bold"
+        />
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="Username"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:gravity="left"
             android:layout_marginRight="30dp"
@@ -47,7 +59,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:text="Password"
         android:textSize="20sp"
@@ -69,22 +81,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:textColor="#000000"
         android:textStyle="bold"
         android:id="@+id/Login"
         android:text="Login"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OR"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginTop="20dp"
-        />
 
     <Button
         android:layout_width="wrap_content"

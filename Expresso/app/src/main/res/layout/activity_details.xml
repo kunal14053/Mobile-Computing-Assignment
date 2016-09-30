@@ -12,6 +12,19 @@
     android:background="@drawable/espresso"
     tools:context="in.ac.iiitd.kunal.expresso.Details">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="Please Provide Your Detail Or you May Skip Too"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name:"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_gravity="center"
@@ -49,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="College Name:"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:gravity="left"
@@ -75,7 +88,7 @@
             android:layout_height="wrap_content"
             android:text="College ID:"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:gravity="left"
@@ -101,7 +114,7 @@
             android:layout_height="wrap_content"
             android:text="Date Of Birth:"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:gravity="left"
@@ -127,7 +140,7 @@
             android:layout_height="wrap_content"
             android:text="Phone No.:"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:gravity="left"

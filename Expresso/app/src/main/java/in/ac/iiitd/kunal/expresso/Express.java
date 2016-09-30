@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class Express extends AppCompatActivity {
 
-    private Button General,Personal,Memorable,Settings;
+    private Button General,Personal,Memorable,Settings,Read;
     public static String TAG="Id";
 
     @Override
@@ -49,6 +49,15 @@ public class Express extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(Express.this,Settings.class);
+                startActivity(i);
+            }
+        });
+
+        Read=(Button)findViewById(R.id.read);
+        Read.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Express.this,Read.class);
                 startActivity(i);
             }
         });

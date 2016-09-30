@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.ac.iiitd.kunal.expresso">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -35,6 +34,9 @@
         <activity android:name=".Settings" />
         <activity android:name=".Ask_Key" />
         <activity android:name=".Show" />
-        <activity android:name=".Update"></activity>
+        <activity android:name=".Update" />
+        <activity android:name=".Read" />
+        <activity android:name=".Content"></activity>
     </application>
+
 </manifest>
