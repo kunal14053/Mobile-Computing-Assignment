@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class Read extends AppCompatActivity {
 
-    Button G_internal,G_external,M_internal,M_external,P_internal,P_external;
+    Button G_internal,G_external,M_internal,M_external,P_internal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class Read extends AppCompatActivity {
         M_internal=(Button)findViewById(R.id.m_internal);
         M_external=(Button)findViewById(R.id.m_external);
         P_internal=(Button)findViewById(R.id.p_internal);
-        P_external=(Button)findViewById(R.id.p_external);
+
 
         G_internal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +67,7 @@ public class Read extends AppCompatActivity {
             }
         });
 
-        P_external.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(Read.this,Content.class);
-                i.putExtra("Type",6);
-                startActivity(i);
-            }
-        });
+
 
     }
 }

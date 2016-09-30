@@ -18,6 +18,7 @@
         android:id="@+id/content_provide"
         android:gravity="start"
         android:textSize="20sp"
+        android:padding="5dp"
         android:background="@drawable/black"
         />
 

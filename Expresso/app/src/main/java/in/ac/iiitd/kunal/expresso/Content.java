@@ -1,110 +1,115 @@
 package in.ac.iiitd.kunal.expresso;
 
-import android.content.Context;
+
+import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Content extends AppCompatActivity {
 
     TextView content;
-    FileInputStream inputstream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
-
         content=(TextView)findViewById(R.id.content_provide);
         int k=getIntent().getIntExtra("Type",-1);
 
-        //odd internal
-        //even external
 
         if(k==1)
         {
-            Toast.makeText(getApplicationContext(),"INTERNAL GENERAL",Toast.LENGTH_LONG);
-            try {
-                inputstream=openFileInput("General");
-                InputStreamReader isr = new InputStreamReader(inputstream);
-                BufferedReader bufferedReader = new BufferedReader(isr);
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
+            try{
+                FileInputStream fin = openFileInput("General");
+                int c;
+                String temp="";
+                while( (c = fin.read()) != -1){
+                    temp = temp + Character.toString((char)c);
                 }
-                content.setText(sb);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                content.setText(temp);
+                Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
             }
-
+            catch(Exception e){
+            }
         }
         else if(k==2)
         {
-            content.setText("external");
+            try{
+                File file= new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),"General");
+                String read_file=file.getAbsolutePath()+"/Data";
+                FileInputStream fin = openFileInput(read_file);
+                int c;
+                String temp="";
+                while( (c = fin.read()) != -1){
+                    temp = temp + Character.toString((char)c);
+                }
+                content.setText(temp);
+                Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
+            }
+            catch(Exception e){
+            }
         }
         else if(k==3)
         {
-            Toast.makeText(getApplicationContext(),"INTERN MEMORABLE",Toast.LENGTH_LONG);
-            try {
-                inputstream=openFileInput("Memorable");
-                InputStreamReader isr = new InputStreamReader(inputstream);
-                BufferedReader bufferedReader = new BufferedReader(isr);
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
+            try{
+                FileInputStream fin = openFileInput("Memorable");
+                int c;
+                String temp="";
+                while( (c = fin.read()) != -1){
+                    temp = temp + Character.toString((char)c);
                 }
-                content.setText(sb);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                content.setText(temp);
+                Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
             }
-
+            catch(Exception e){
+            }
         }
         else if(k==4)
         {
-            content.setText("external");
+            try{
+                File file= new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DOCUMENTS), "Memorable");
+                String read_file=file.getAbsolutePath()+"/Data";
+                FileInputStream fin = openFileInput(read_file);
+                int c;
+                String temp="";
+                while( (c = fin.read()) != -1){
+                    temp = temp + Character.toString((char)c);
+                }
+                content.setText(temp);
+                Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
+            }
+            catch(Exception e){
+            }
         }
         else if(k==5)
         {
-            Toast.makeText(getApplicationContext(),"INTERN PERSONAL",Toast.LENGTH_LONG);
-            try {
-                inputstream=openFileInput("Personal");
-                InputStreamReader isr = new InputStreamReader(inputstream);
-                BufferedReader bufferedReader = new BufferedReader(isr);
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
+            try{
+                FileInputStream fin = openFileInput("Personal");
+                int c;
+                String temp="";
+                while( (c = fin.read()) != -1){
+                    temp = temp + Character.toString((char)c);
                 }
-                content.setText(sb);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                content.setText(temp);
+                Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
             }
-        }
-        else if(k==6)
-        {
-            content.setText("external");
+            catch(Exception e){
+            }
         }
         else
         {
             Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
         }
+
 
     }
 }

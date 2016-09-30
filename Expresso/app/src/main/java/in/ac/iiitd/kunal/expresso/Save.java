@@ -1,187 +1,179 @@
 package in.ac.iiitd.kunal.expresso;
 
-import android.content.Context;
-import android.content.Intent;
+
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 
 public class Save extends AppCompatActivity {
 
-    //Put the data in files
+
     private Button Save;
     private EditText Write;
     private int way;
     private String out;
     private String filename;
-    FileOutputStream outputStream;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
-
-
         Write = (EditText) findViewById(R.id.write);
-        out = Write.getText().toString();
+
+        way = getIntent().getIntExtra(Express.TAG, 0);
 
         Save = (Button) findViewById(R.id.submit);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                way = getIntent().getIntExtra(Express.TAG, 0);
-
-                //Internal only public
-                //External both private(deleted) and public(remain)
-
+                out = Write.getText().toString();
                     if(way==0) {
-                        Toast.makeText(getApplicationContext(), "SORRY", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
                     }
                      else if(way==1) {
-                        //General
-                        //External Private
-                        //Internal Public
+                        //General External Private Internal Public
+
                         filename="General";
                         if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
-                                Toast.makeText(getApplicationContext(),"External",Toast.LENGTH_LONG).show();
-                            try {
-                                File file=getPrivateStorageDir(filename);
+                                File folder=getPrivateStorageDir(filename);
+                                File file = new File (folder, "Data");
+                                FileOutputStream fout=null;
                                 if(file.exists())
                                 {
-                                    outputStream = new FileOutputStream(file,true);
-                                    outputStream.write(out.getBytes());
-                                    outputStream.close();
+                                    try {
+                                        fout = new FileOutputStream(file,true);
+                                        fout.write(out.getBytes());
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                                else {
-                                    outputStream = new FileOutputStream(file,false);
-                                    outputStream.write(out.getBytes());
-                                    outputStream.close();
+                                else
+                                {
+                                    try {
+                                        fout = new FileOutputStream(file,false);
+                                        fout.write(out.getBytes());
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-                            } catch (Exception e) {
-                                Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
-                            }
 
                         }
                         else
                         {
+                            FileOutputStream fOut = null;
                             if(fileExistance(filename))
                             {
                                 try {
-                                    outputStream = new FileOutputStream(filename,true);
-                                    outputStream.write(out.getBytes());
-                                    outputStream.close();
-                                    Toast.makeText(getApplicationContext(), "Appended & Saved", Toast.LENGTH_SHORT).show();
+                                    fOut = openFileOutput(filename,MODE_APPEND);
+                                    fOut.write(out.getBytes());
+                                    fOut.close();
+                                    Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
                                 }
                             }
-                            else {
+                            else
+                            {
                                 try {
-                                    outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                                    outputStream.write(out.getBytes());
-                                    outputStream.close();
-                                    Toast.makeText(getApplicationContext(), "Created & Saved", Toast.LENGTH_SHORT).show();
+                                    fOut = openFileOutput(filename,MODE_PRIVATE);
+                                    fOut.write(out.getBytes());
+                                    fOut.close();
+                                    Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
                                 }
                             }
                         }
                     }
                     else if(way==2) {
-                        //Memorable
-                        //External Public
-                        //Internal Private
+                        //Memorable External Public Internal Private
+
                         filename="Memorable";
                         if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
-                            Toast.makeText(getApplicationContext(),"External",Toast.LENGTH_LONG).show();
-                                try {
-                                    File file=getPublicStorageDir(filename);
-                                    if(file.exists())
-                                    {
-                                        outputStream = new FileOutputStream(file,true);
-                                        outputStream.write(out.getBytes());
-                                        outputStream.close();
-                                    }
-                                    else {
-                                        outputStream = new FileOutputStream(file,false);
-                                        outputStream.write(out.getBytes());
-                                        outputStream.close();
-                                    }
-                                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-                                } catch (Exception e) {
-                                    Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
-                                }
-
-
-                        }
-                        else
-                        {
-
-                            if(fileExistance(filename))
+                            File folder=getPublicStorageDir(filename);
+                            File file = new File (folder, "Data");
+                            FileOutputStream fout=null;
+                            if(file.exists())
                             {
                                 try {
-                                    outputStream = new FileOutputStream(filename,true);
-                                    outputStream.write(out.getBytes());
-                                    outputStream.close();
-                                    Toast.makeText(getApplicationContext(), "Appended & Saved", Toast.LENGTH_SHORT).show();
+                                    fout = new FileOutputStream(file,true);
+                                    fout.write(out.getBytes());
                                 } catch (Exception e) {
-                                    Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
                                 }
                             }
-                            else {
+                            else
+                            {
                                 try {
-                                    outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                                    outputStream.write(out.getBytes());
-                                    outputStream.close();
-                                    Toast.makeText(getApplicationContext(), "Created & Saved", Toast.LENGTH_SHORT).show();
+                                    fout = new FileOutputStream(file,false);
+                                    fout.write(out.getBytes());
                                 } catch (Exception e) {
-                                    Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                }
+                            }
+
+                        }
+                        else {
+                            FileOutputStream fOut = null;
+                            if (fileExistance(filename)) {
+                                try {
+                                    fOut = openFileOutput(filename, MODE_APPEND);
+                                    fOut.write(out.getBytes());
+                                    fOut.close();
+                                    Toast.makeText(getBaseContext(), "file saved", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                try {
+                                    fOut = openFileOutput(filename, MODE_PRIVATE);
+                                    fOut.write(out.getBytes());
+                                    fOut.close();
+                                    Toast.makeText(getBaseContext(), "file saved", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
                             }
                         }
                     }
                     else {
-                        //Personal
-                        //Internal Private
+                        //Personal Internal Private
+
                         filename="Personal";
+                        FileOutputStream fOut = null;
                         if(fileExistance(filename))
                         {
                             try {
-                                outputStream = new FileOutputStream(filename,true);
-                                outputStream.write(out.getBytes());
-                                outputStream.close();
-                                Toast.makeText(getApplicationContext(), "Appended & Saved", Toast.LENGTH_SHORT).show();
+                                fOut = openFileOutput(filename,MODE_APPEND);
+                                fOut.write(out.getBytes());
+                                fOut.close();
+                                Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
-                                Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
                             }
                         }
-                        else {
+                        else
+                        {
                             try {
-                                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                                outputStream.write(out.getBytes());
-                                outputStream.close();
-                                Toast.makeText(getApplicationContext(), "Created & Saved", Toast.LENGTH_SHORT).show();
+                                fOut = openFileOutput(filename,MODE_PRIVATE);
+                                fOut.write(out.getBytes());
+                                fOut.close();
+                                Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
-                                Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
                             }
                         }
                     }
-                Intent i = new Intent(Save.this, Express.class);
-                startActivity(i);
-                Write.setText("");
+
                 finish();
             }});
 
