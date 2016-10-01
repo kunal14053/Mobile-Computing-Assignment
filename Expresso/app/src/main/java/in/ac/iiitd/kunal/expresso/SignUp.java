@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
                 {
                     Toast.makeText(getApplication(),"Empty Field Not Allowed",Toast.LENGTH_LONG).show();
                 }
-                else if(!isNumeric(Password.getText().toString()) && Password.getText().toString().length()>7 && Password.getText().toString().length()<5)
+                else if(!isNumeric(Password.getText().toString()) || Password.getText().toString().length()>7 || Password.getText().toString().length()<5)
                 {
                     Toast.makeText(getApplication(),"Pin Should Be Numeric And 5 to 7 In Length",Toast.LENGTH_LONG).show();
                 }
