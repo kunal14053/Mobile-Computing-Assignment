@@ -17,6 +17,7 @@
         android:layout_height="500dp"
         android:id="@+id/display"
         android:gravity="start"
+        android:scrollbars = "vertical"
         android:textSize="20sp"
         android:background="@drawable/black"
         />

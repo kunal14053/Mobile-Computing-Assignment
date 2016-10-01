@@ -23,6 +23,27 @@
         android:background="@drawable/black"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mode"
+            android:id="@+id/mode"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="70dp"
+            />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,8 +53,9 @@
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_gravity="right"
+        android:layout_marginLeft="70dp"
         />
 
+    </LinearLayout>
 
 </LinearLayout>

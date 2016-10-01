@@ -42,6 +42,7 @@ public class Ask_Key extends AppCompatActivity {
                     else
                     {
                         db.deleteInfo(id.getText().toString());
+                        finish();
                     }
                 }
             }

@@ -31,7 +31,11 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 if(Username.getText().toString().equals("") || Password.getText().toString().equals(""))
                 {
-                    Toast.makeText(getApplication(),"One Or More Field Empty",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(),"Empty Field Not Allowed",Toast.LENGTH_LONG).show();
+                }
+                else if(!isNumeric(Password.getText().toString()) && Password.getText().toString().length()>7 && Password.getText().toString().length()<5)
+                {
+                    Toast.makeText(getApplication(),"Pin Should Be Numeric And 5 to 7 In Length",Toast.LENGTH_LONG).show();
                 }
                 else {
                     SharedPreferences.Editor editor = getSharedPreferences("Login Details", MODE_PRIVATE).edit();
@@ -44,5 +48,18 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 }

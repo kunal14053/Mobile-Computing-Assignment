@@ -19,6 +19,7 @@
         android:gravity="start"
         android:textSize="20sp"
         android:padding="5dp"
+        android:scrollbars = "vertical"
         android:background="@drawable/black"
         />
 

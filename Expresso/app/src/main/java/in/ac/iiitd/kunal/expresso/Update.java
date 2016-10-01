@@ -51,6 +51,7 @@ public class Update extends AppCompatActivity {
                     colege_name=info.getCollege_name();
 
                 db.updateInfo(getIntent().getStringExtra("ID"),new Information(name,colege_name,college_id,dob,phone));
+                finish();
             }
         });
 

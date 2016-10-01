@@ -16,20 +16,24 @@ import java.io.FileOutputStream;
 public class Save extends AppCompatActivity {
 
 
-    private Button Save;
+    private Button Save,Mode;
     private EditText Write;
     private int way;
     private String out;
     private String filename;
-
+    private int flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
         Write = (EditText) findViewById(R.id.write);
-
+        Mode= (Button) findViewById(R.id.mode);
+        flag=1;
         way = getIntent().getIntExtra(Express.TAG, 0);
+
+        if(way==3)
+            Mode.setVisibility(View.GONE);
 
         Save = (Button) findViewById(R.id.submit);
         Save.setOnClickListener(new View.OnClickListener() {
@@ -43,15 +47,17 @@ public class Save extends AppCompatActivity {
                         //General External Private Internal Public
 
                         filename="General";
-                        if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
+                        if (isExternalStorageAvailable() && flag!=0) {
                                 File folder=getPrivateStorageDir(filename);
-                                File file = new File (folder, "Data");
+                                File file = new File (folder, "Data.txt");
                                 FileOutputStream fout=null;
                                 if(file.exists())
                                 {
                                     try {
                                         fout = new FileOutputStream(file,true);
                                         fout.write(out.getBytes());
+                                        fout.close();
+                                        Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -61,6 +67,8 @@ public class Save extends AppCompatActivity {
                                     try {
                                         fout = new FileOutputStream(file,false);
                                         fout.write(out.getBytes());
+                                        fout.close();
+                                        Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -97,16 +105,19 @@ public class Save extends AppCompatActivity {
                     else if(way==2) {
                         //Memorable External Public Internal Private
 
+                        //filename="Memorable";
                         filename="Memorable";
-                        if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
-                            File folder=getPublicStorageDir(filename);
-                            File file = new File (folder, "Data");
+                        if (isExternalStorageAvailable()&& flag!=0) {
+                            File folder=getPrivateStorageDir(filename);
+                            File file = new File (folder, "Data.txt");
                             FileOutputStream fout=null;
                             if(file.exists())
                             {
                                 try {
                                     fout = new FileOutputStream(file,true);
                                     fout.write(out.getBytes());
+                                    fout.close();
+                                    Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -116,6 +127,8 @@ public class Save extends AppCompatActivity {
                                 try {
                                     fout = new FileOutputStream(file,false);
                                     fout.write(out.getBytes());
+                                    fout.close();
+                                    Toast.makeText(getBaseContext(),"file saved",Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -177,38 +190,41 @@ public class Save extends AppCompatActivity {
                 finish();
             }});
 
+
+
+        Mode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(flag==1)
+                {
+                    flag=0;
+                    Toast.makeText(getApplicationContext(),"Mode Changed To Internal",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    flag=1;
+                    Toast.makeText(getApplicationContext(),"Mode Changed To External",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
-    private static boolean isExternalStorageReadOnly() {
-        String extStorageState = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
-            return true;
-        }
-        return false;
-    }
 
     private static boolean isExternalStorageAvailable() {
-        String extStorageState = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
+        String extStorageState = android.os.Environment.getExternalStorageState();
+        if (android.os.Environment.MEDIA_MOUNTED.equals(extStorageState)) {
             return true;
         }
         return false;
     }
 
-    public File getPublicStorageDir(String albumName) {
-        File file= new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOCUMENTS), albumName);
-        if (!file.mkdirs()) {
-            Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
-        }
-        return file;
-    }
 
     public File getPrivateStorageDir(String albumName) {
         File file= new File(getApplicationContext().getExternalFilesDir(
                 Environment.DIRECTORY_DOCUMENTS), albumName);
         if (!file.mkdirs()) {
-            Toast.makeText(getApplicationContext(), "ERROR!!", Toast.LENGTH_SHORT).show();
+
         }
         return file;
     }

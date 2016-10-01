@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,14 +44,18 @@ public class Content extends AppCompatActivity {
         else if(k==2)
         {
             try{
-                File file= new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),"General");
-                String read_file=file.getAbsolutePath()+"/Data";
-                FileInputStream fin = openFileInput(read_file);
-                int c;
+                String read_file=getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/General/Data.txt";
+                File f =new File(read_file);
                 String temp="";
-                while( (c = fin.read()) != -1){
-                    temp = temp + Character.toString((char)c);
+                String aDataRow = "";
+                FileInputStream fin = new FileInputStream(f);
+                BufferedReader myReader = new BufferedReader(
+                        new InputStreamReader(fin));
+
+                while ((aDataRow = myReader.readLine()) != null) {
+                    temp += aDataRow + "\n";
                 }
+                myReader.close();
                 content.setText(temp);
                 Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
             }
@@ -75,15 +80,18 @@ public class Content extends AppCompatActivity {
         else if(k==4)
         {
             try{
-                File file= new File(Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_DOCUMENTS), "Memorable");
-                String read_file=file.getAbsolutePath()+"/Data";
-                FileInputStream fin = openFileInput(read_file);
-                int c;
+                String read_file=getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)+"/Memorable/Data.txt";
+                File f =new File(read_file);
                 String temp="";
-                while( (c = fin.read()) != -1){
-                    temp = temp + Character.toString((char)c);
+                String aDataRow = "";
+                FileInputStream fin = new FileInputStream(f);
+                BufferedReader myReader = new BufferedReader(
+                        new InputStreamReader(fin));
+
+                while ((aDataRow = myReader.readLine()) != null) {
+                    temp += aDataRow + "\n";
                 }
+                myReader.close();
                 content.setText(temp);
                 Toast.makeText(getBaseContext(),"file read",Toast.LENGTH_SHORT).show();
             }
