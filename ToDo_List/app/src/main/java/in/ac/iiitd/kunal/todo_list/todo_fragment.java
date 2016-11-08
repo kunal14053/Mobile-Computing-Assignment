@@ -98,7 +98,7 @@ public class todo_fragment extends Fragment {
         public TaskHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            mTitleTextView=(TextView)itemView;
+            mTitleTextView=(TextView)itemView.findViewById(R.id.TextView_List);
         }
 
         public void bindTask(Task task) {
@@ -128,8 +128,8 @@ public class todo_fragment extends Fragment {
         public TaskHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-
-            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+//Change here
+            View view = layoutInflater.inflate(R.layout.list_item, parent, false);
 
             return new TaskHolder(view);
         }

@@ -82,9 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
         android:id="@+id/Login1"
+        style="@style/BeatBoxButton"
         android:text="Login"
         />
 
@@ -94,9 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Sign Up"
+        style="@style/BeatBoxButton"
         android:id="@+id/Sighup"
-        android:textColor="#000000"
-        android:textStyle="bold"
         />
 
 

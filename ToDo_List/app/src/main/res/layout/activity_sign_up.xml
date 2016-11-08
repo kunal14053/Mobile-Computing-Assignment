@@ -72,8 +72,7 @@
         android:layout_marginTop="20dp"
         android:text="Next"
         android:id="@+id/next"
-        android:textColor="#000000"
-        android:textStyle="bold"
+        style="@style/BeatBoxButton"
         />
 
 </LinearLayout>
