@@ -11,6 +11,7 @@ import java.util.UUID;
  */
 public class TaskLab {
 
+    private DatabaseHandler db;
 
     private static TaskLab sTaskLab;
 
@@ -26,12 +27,19 @@ public class TaskLab {
     public void addTask(Task c)
     {
         mTasks.add(c);
+        db.addInfo(c);
     }
 
 
     private TaskLab(Context context) {
 
         mTasks = new ArrayList<>();
+        db = new DatabaseHandler(context);
+        List<Task> tasks = db.getAllInfo();
+        for (Task t : tasks) {
+            mTasks.add(t);
+        }
+        db.close();
     }
 
     public List<Task> getTasks() {

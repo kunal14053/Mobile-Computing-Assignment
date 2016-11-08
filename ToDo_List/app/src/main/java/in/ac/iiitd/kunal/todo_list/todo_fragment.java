@@ -77,11 +77,12 @@ public class todo_fragment extends Fragment {
 
 
         private void updateUI() {
+
         TaskLab taskLab = TaskLab.get(getActivity());
-        List<Task> crimes = taskLab.getTasks();
+        List<Task> tasks = taskLab.getTasks();
 
         if (mAdapter == null) {
-            mAdapter = new TaskAdapter(crimes);
+            mAdapter = new TaskAdapter(tasks);
             mRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();

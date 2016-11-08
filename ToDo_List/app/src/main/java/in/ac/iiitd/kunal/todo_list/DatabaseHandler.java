@@ -35,7 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String CREATE_INFO_TABLE = "CREATE TABLE " + TABLE_INFO + "("
                 + KEY_ID + " INTEGER," + KEY_NAME + " TEXT,"
-                + KEY_DETAIL + " TEXT," +")";
+                + KEY_DETAIL + " TEXT " +")";
 
         db.execSQL(CREATE_INFO_TABLE);
     }
@@ -52,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, info.getmId().toString());
         values.put(KEY_NAME, info.getmTitle());
-        values.put(KEY_DETAIL, info.getmDetail());
+        values.put(KEY_DETAIL, info.getmDescription());
         db.insert(TABLE_INFO, null, values);
         db.close();
     }
@@ -68,7 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Task contact = new Task();
                 contact.setmId(UUID.fromString(cursor.getString(0)));
                 contact.setmTitle(cursor.getString(1));
-                contact.setmDetail(cursor.getString(2));
+                contact.setmDescription(cursor.getString(2));
                 infoList.add(contact);
             } while (cursor.moveToNext());
         }
@@ -79,7 +79,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, info.getmTitle());
-        values.put(KEY_DETAIL, info.getmDetail());
+        values.put(KEY_DETAIL, info.getmDescription());
         return db.update(TABLE_INFO, values, KEY_ID + " = ?",
                 new String[] { id });
     }
