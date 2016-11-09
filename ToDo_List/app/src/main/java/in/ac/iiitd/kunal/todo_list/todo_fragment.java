@@ -38,8 +38,6 @@ public class todo_fragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.todo_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        updateUI();
-
         return view;
     }
 
@@ -67,7 +65,8 @@ public class todo_fragment extends Fragment {
             case R.id.menu_item_new_task:
                 Task task =  new Task();
                 TaskLab.get(getActivity()).addTask(task);
-                Intent intent=TaskPager.newIntent(getActivity(),task.getmId()); startActivity(intent);
+                Intent intent=TaskPager.newIntent(getActivity(),task.getmId());
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

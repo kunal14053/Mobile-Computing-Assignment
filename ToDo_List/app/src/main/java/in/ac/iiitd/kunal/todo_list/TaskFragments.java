@@ -19,6 +19,7 @@ public class TaskFragments extends Fragment {
     private Task mTask;
     private EditText mTitleField;
     private EditText mDescriptionField;
+    private DatabaseHandler db;
 
     public static TaskFragments newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -31,8 +32,11 @@ public class TaskFragments extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID crimeId = (UUID) getArguments().getSerializable(ARG_TASK_ID);
-        mTask = TaskLab.get(getActivity()).getTask(crimeId);
+        UUID taskId = (UUID) getArguments().getSerializable(ARG_TASK_ID);
+        mTask = TaskLab.get(getActivity()).getTask(taskId);
+        db = new DatabaseHandler(getActivity());
+        db.addInfo(mTask);
+        db.close();
     }
 
     @Override
@@ -55,6 +59,8 @@ public class TaskFragments extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mTask.setmTitle(s.toString());
+                db.updateInfo(String.valueOf(mTask.getmId()),mTask);
+                db.close();
             }
 
             @Override
@@ -74,6 +80,8 @@ public class TaskFragments extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mTask.setmDescription(s.toString());
+                db.updateInfo(String.valueOf(mTask.getmId()),mTask);
+                db.close();
             }
 
             @Override

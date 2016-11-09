@@ -13,6 +13,8 @@ public class TaskLab {
 
     private DatabaseHandler db;
 
+    private Context mContext;
+
     private static TaskLab sTaskLab;
 
     private ArrayList<Task> mTasks;
@@ -27,19 +29,18 @@ public class TaskLab {
     public void addTask(Task c)
     {
         mTasks.add(c);
-        db.addInfo(c);
     }
 
 
     private TaskLab(Context context) {
-
+        mContext=context;
         mTasks = new ArrayList<>();
         db = new DatabaseHandler(context);
         List<Task> tasks = db.getAllInfo();
         for (Task t : tasks) {
-            mTasks.add(t);
+                mTasks.add(t);
         }
-        db.close();
+
     }
 
     public List<Task> getTasks() {
@@ -50,9 +51,11 @@ public class TaskLab {
     public Task getTask(UUID id)
     {
         for (Task task : mTasks) {
-            if (task.getmId().equals(id)) {
+            if (task.getmId().equals(id))
+            {
                 return task;
             }
+
         }
         return null;
     }

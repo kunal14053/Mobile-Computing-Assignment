@@ -48,7 +48,7 @@
         android:id="@+id/task_description"
         android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:textSize="20sp"
         android:gravity="start"
         android:layout_marginTop="10dp"

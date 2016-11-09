@@ -40,12 +40,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_INFO_TABLE);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INFO);
         onCreate(db);
     }
 
+
+    public void deleteInfo(String Id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_INFO, KEY_ID + " = ?", new String[]{Id});
+        db.close();
+    }
 
     public void addInfo(Task info) {
         SQLiteDatabase db = this.getWritableDatabase();

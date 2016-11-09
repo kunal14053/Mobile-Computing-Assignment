@@ -27,8 +27,7 @@ public class Task {
     private String mDetail;
 
     public Task() {
-
-        mId = UUID.randomUUID();
+        mId =UUID.randomUUID();
     }
 
     public UUID getmId() {
