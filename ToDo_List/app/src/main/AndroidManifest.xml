@@ -17,7 +17,7 @@
         <activity android:name=".SingleFragmentActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".TaskPager"
-            android:parentActivityName=".login"
+            android:parentActivityName=".todo_fragment"
             android:screenOrientation="portrait"
             />
         <activity android:name=".TaskFragments" android:screenOrientation="portrait"/>

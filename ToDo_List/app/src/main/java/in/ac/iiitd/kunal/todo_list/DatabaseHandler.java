@@ -65,8 +65,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public List<Task> getAllInfo() {
-        List<Task> infoList = new ArrayList<Task>();
+    public ArrayList<Task> getAllInfo() {
+        ArrayList<Task> infoList = new ArrayList<Task>();
         String selectQuery = "SELECT  * FROM " + TABLE_INFO;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

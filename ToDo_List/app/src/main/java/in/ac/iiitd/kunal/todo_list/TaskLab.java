@@ -1,6 +1,7 @@
 package in.ac.iiitd.kunal.todo_list;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,6 @@ public class TaskLab {
 
     private DatabaseHandler db;
 
-    private Context mContext;
 
     private static TaskLab sTaskLab;
 
@@ -29,18 +29,15 @@ public class TaskLab {
     public void addTask(Task c)
     {
         mTasks.add(c);
+        db.addInfo(c);
     }
 
 
     private TaskLab(Context context) {
-        mContext=context;
-        mTasks = new ArrayList<>();
-        db = new DatabaseHandler(context);
-        List<Task> tasks = db.getAllInfo();
-        for (Task t : tasks) {
-                mTasks.add(t);
-        }
 
+        db=new DatabaseHandler(context);
+        mTasks = new ArrayList<>();
+        mTasks=db.getAllInfo();
     }
 
     public List<Task> getTasks() {

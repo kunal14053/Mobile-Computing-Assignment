@@ -21,7 +21,7 @@ public class todo_fragment extends Fragment {
 
     RecyclerView mRecyclerView;
     private TaskAdapter mAdapter;
-
+    DatabaseHandler db;
 
     @Override
     public void onCreate(Bundle savedinstanceState) {
@@ -80,7 +80,9 @@ public class todo_fragment extends Fragment {
         TaskLab taskLab = TaskLab.get(getActivity());
         List<Task> tasks = taskLab.getTasks();
 
-        if (mAdapter == null) {
+
+
+         if (mAdapter == null) {
             mAdapter = new TaskAdapter(tasks);
             mRecyclerView.setAdapter(mAdapter);
         } else {
